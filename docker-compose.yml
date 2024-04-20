@@ -1,0 +1,70 @@
+version: '3'
+services:
+
+  # 開発環境のみ、DBをコンテナ化
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+    environment:
+      TZ: Asia/Tokyo
+
+  # 開発環境のみ、DBをコンテナ化
+  db:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - mysql_data:/var/lib/mysql/
+    environment:
+      MYSQL_DATABASE: app_development
+      MYSQL_ROOT_PASSWORD: password
+      TZ: Asia/Tokyo
+    depends_on:
+      - redis
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile.development
+    # command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    environment:
+      - DATABASE=app_development
+      - DB_HOST=DB
+      - DB_USERNAME=root
+      - DB_PASSWORD=password
+    volumes:
+      - ./backend:/app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile.development
+    volumes:
+      - ./frontend:/app
+    ports:
+      - "8080:8080"
+    tty: true
+    stdin_open: true
+    environment:
+      CHOKIDAR_USEPOLLING: true
+      # command: npm run serve
+    depends_on:
+      - backend
+
+  web:
+    build:
+      context: .
+      dockerfile: web/Dockerfile.development
+    ports:
+      - "80:80"
+    depends_on:
+      - frontend
+    # volumes_from:
+    #   - frontend
+
+volumes:
+  mysql_data:

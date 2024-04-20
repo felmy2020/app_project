@@ -1,0 +1,12 @@
+# Stage 1: ビルドステージ
+FROM node:latest AS build-stage
+WORKDIR /app
+COPY /frontend .
+RUN npm install
+RUN npm install axios
+RUN npm run build
+
+# Stage 2: 本番用ステージ
+FROM nginx:latest AS production-stage
+COPY --from=build-stage /app/dist /usr/share/nginx/html
+CMD ["nginx", "-g", "daemon off;"]

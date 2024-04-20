@@ -6,6 +6,8 @@
 /backend/tmp/*
 !/backend/log/.keep
 !/backend/tmp/.keep
+!/backend/tmp/pids
+
 
 # Ignore uploaded files in development and test environment.
 /backend/storage/*

@@ -1,4 +1,5 @@
  # rails プロジェクト作成
+ .gitignoreの設定を忘れない
  rails new . --force --database=mysql   --skip-bundle --skip-turbolinks --skip-test --api
  database.ymlの設定
  rails db:create

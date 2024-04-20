@@ -1,15 +1,22 @@
-# Stage 1: 開発ステージ
-FROM node:latest AS development-stage
+# Use Node.js image as a base
+FROM node:latest
 
-# プロジェクトディレクトリの作業ディレクトリを設定
+# Set the working directory inside the container
 WORKDIR /app
 
-# プロジェクトの依存関係のインストール
-COPY /frontend/package.json .
-RUN npm install @vue/cli
+RUN rm -rf node_modules
 
-# プロジェクトファイルのコピー
+# Install Vue CLI globally
+RUN npm install -g @vue/cli
+
+# Copy package.json and package-lock.json
+COPY /frontend/package*.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy all files from the current directory to the working directory inside the container
 COPY /frontend/ .
 
-# 開発用サーバーの起動
+# Command to run the Vue.js app
 CMD ["npm", "run", "serve"]

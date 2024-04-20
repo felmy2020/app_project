@@ -14,6 +14,7 @@ fi
 
 # Unicornサーバー起動
 rm -f /var/run/unicorn.pid
-rm -f /app/tmp/pids/server.pid
-# bundle exec unicorn_rails --env $RAILS_ENV -c config/unicorn.rb
-rails server -b 0.0.0.0
+
+# bundle exec unicorn -c config/unicorn.rb -E production
+bundle exec unicorn_rails --env $RAILS_ENV -c config/unicorn.rb
+# rails server -b 0.0.0.0

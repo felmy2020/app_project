@@ -54,16 +54,16 @@ services:
     depends_on:
       - backend
 
-  # web:
-  #   build:
-  #     context: .
-  #     dockerfile: web/Dockerfile.development
-  #   ports:
-  #     - "80:80"
-  #   depends_on:
-  #     - frontend
-  #   volumes_from:
-  #     - frontend
+  web:
+    build:
+      context: .
+      dockerfile: web/Dockerfile.development
+    ports:
+      - "80:80"
+    depends_on:
+      - frontend
+    volumes_from:
+      - frontend
 
 volumes:
   mysql_data:

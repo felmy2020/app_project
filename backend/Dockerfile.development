@@ -1,0 +1,37 @@
+FROM ruby:3.0.3
+ENV RAILS_ENV=development
+
+# TimeZoneの設定
+ENV TZ=Asia/Tokyo
+RUN ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+
+# 必要なパッケージのインストール
+RUN apt-get update -qq && \
+    apt-get install -y \
+    build-essential \
+    libpq-dev \
+    nodejs \
+    && rm -rf /var/lib/apt/lists/*
+
+# Railsをインストール
+RUN gem install rails
+
+# ワークディレクトリを作成
+WORKDIR /app
+
+# GemfileとGemfile.lockをコピーして依存関係をインストール
+COPY /backend/Gemfile /backend/Gemfile.lock ./
+RUN bundle install
+
+COPY /backend /app
+
+# # ファイル共有設定
+# # VOLUME ["/var/tmp", "/app/public"]
+
+# # マイグレーション実行フラグの設定
+# ARG DO_MIGRATION=false
+# ENV DO_MIGRATION=$DO_MIGRATION
+
+# # コンテナ起動
+RUN chmod +x /app/start.sh
+CMD /bin/sh /app/start.sh

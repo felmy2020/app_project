@@ -10,5 +10,7 @@ rails console
 Test.create(name: "John", age: 25)
 Test.create(name: "Alice", age: 30)
 
-docker-compose exec frontend /bin/bash
+# pumaで起動
+
+docker-compose exec backend /bin/bash
 docker-compose run --rm backend bash

@@ -1,0 +1,59 @@
+version: '3'
+services:
+
+  # 開発環境のみ、DBをコンテナ化
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+    environment:
+      TZ: Asia/Tokyo
+
+  # 開発環境のみ、DBをコンテナ化
+  db:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - mysql_data:/var/lib/mysql/
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      TZ: Asia/Tokyo
+    depends_on:
+      - redis
+
+  # backend:
+  #   build: .
+  #   command: bundle exec rails s -p 3000 -b '0.0.0.0'
+  #   volumes:
+  #     - ./src:/app
+  #   ports:
+  #     - "3000:3000"
+  #   depends_on:
+  #     - db
+
+  # frontend:
+  #   build:
+  #     context: .
+  #     dockerfile: docker/
+  #   command: bundle exec rails s -p 3000 -b '0.0.0.0'
+  #   volumes:
+  #     - ./frontend:/app
+  #   ports:
+  #     - "8080:8080"
+  #   depends_on:
+  #     - backend
+
+  # web:
+  #   build:
+  #     context: .
+  #     dockerfile: web/
+  #   command: bundle exec rails s -p 3000 -b '0.0.0.0'
+  #   ports:
+  #     - "80:80"
+  #   volumes_from:
+  #     - frontend
+  #   depends_on:
+  #     - frontend
+
+volumes:
+  mysql_data:

@@ -33,15 +33,15 @@
 # DockerにおけるVue.jsビルド時の「vue-cli-service not found docker」原因
 - ホットリロードを採用しているため、ホスト側とコンテナ側のソースをリンク設定していることが原因（- ./frontend:/app）
 - 「node_modules」が随時上書きされてしまうため、vue-cliのパスが変更されている模様
-- コンテナ側の「/app/node_modules」を専用のボリュームに指定してあげることで解決
-'''
+- コンテナ側の「/app/node_modules」を専用のボリュームに指定してあげることで、リンクの上書きさせないことで解決
+```
 volumes:
   - node_modules:/app/node_modules
 
 volumes:
   mysql_data:
   node_modules:
-'''
+```
 
 # README
 ## エンジニアのため情報交換アプリ「SolQue」

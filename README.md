@@ -1,6 +1,6 @@
 # ✅ 本リポジトリについて
 
-- 本リポジトリは、「Docker」+「Rails」+「Vuejs」+「Nginx」の環境をテンプレート化-を目的として作成しました。
+- 本リポジトリは、「Docker」+「Rails」+「Vuejs」+「Nginx」の環境をテンプレート化を目的として作成しました。
 - 本リポジトリを利用したい方は、「deveropment」ブランチをご使用ください。
 
 <br>
@@ -9,6 +9,7 @@
   - docker-compose run --rm backend bash
   - rails db:create
   - rails db:migrate
+  - rails db # DBが作成されている確認
 
 ## ⏭ テストデータ作成
  - rails console
@@ -17,7 +18,7 @@
 
 <br>
 
- # ✅ rails プロジェクト作成した手手順
+ # ✅ rails プロジェクト作成した手順
  - docker-compose run --rm backend bash
  - rails new . --force --database=mysql   --skip-bundle --skip-turbolinks --skip-test --api
  - database.ymlの設定
@@ -64,4 +65,3 @@ volumes:
 
 # ✅ プロジェクト作成の権限変更
  - sudo chown -R raizen:raizen ./*
-

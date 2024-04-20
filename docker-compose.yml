@@ -39,33 +39,32 @@ services:
     depends_on:
       - db
 
-  # frontend:
-  #   build:
-  #     context: .
-  #     dockerfile: docker/
-  #   command: bundle exec rails s -p 3000 -b '0.0.0.0'
-  #   volumes:
-  #     - ./frontend:/app
-  #   ports:
-  #     - "8080:8080"
-      # tty: true
-      # stdin_open: true
-      # environment:
-      #   CHOKIDAR_USEPOLLING: true
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile.development
+    volumes:
+      - ./frontend:/app
+    ports:
+      - "8080:8080"
+    tty: true
+    stdin_open: true
+    environment:
+      CHOKIDAR_USEPOLLING: true
       # command: npm run serve
-  #   depends_on:
-  #     - backend
+    depends_on:
+      - backend
 
-  # web:
-  #   build:
-  #     context: .
-  #     dockerfile: web/
-  #   ports:
-  #     - "80:80"
-  #   volumes_from:
-  #     - frontend
-  #   depends_on:
-  #     - frontend
+  web:
+    build:
+      context: .
+      dockerfile: web/Dockerfile.development
+    ports:
+      - "80:80"
+    depends_on:
+      - frontend
+    # volumes_from:
+    #   - frontend
 
 volumes:
   mysql_data:

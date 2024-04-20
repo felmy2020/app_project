@@ -17,6 +17,6 @@ rm -f /app/tmp/pids/server.pid
 bundle exec puma -C config/puma.rb
 
 # Unicornサーバー起動
-rm -f /var/run/unicorn.pid
+# rm -f /var/run/unicorn.pid
 # bundle exec unicorn -c config/unicorn.rb -E production
 # bundle exec unicorn_rails --env $RAILS_ENV -c config/unicorn.rb

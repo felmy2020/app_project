@@ -1,0 +1,32 @@
+# Ignore bundler config.
+/backend/.bundle
+
+# Ignore all logfiles and tempfiles.
+/backend/log/*
+/backend/tmp/*
+!/backend/log/.keep
+!/backend/tmp/.keep
+
+# Ignore uploaded files in development and test environment.
+/backend/storage/*
+!/backend/storage/.keep
+
+# Ignore master key for decrypting credentials and more.
+/backend/config/master.key
+
+# Ignore public/assets directory which is used in production.
+/backend/public/assets
+
+# Ignore node_modules directory used by Node.js packages.
+/backend/node_modules
+
+# Ignore yarn integrity file.
+/backend/yarn-error.log
+/backend/yarn.lock
+
+# Ignore .env files containing sensitive information.
+/backend/.env
+
+# Ignore Mac and Linux system files
+/backend/.DS_Store
+/backend/Thumbs.db

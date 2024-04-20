@@ -26,7 +26,6 @@ services:
     build:
       context: .
       dockerfile: backend/Dockerfile.development
-    # command: bundle exec rails s -p 3000 -b '0.0.0.0'
     environment:
       - DATABASE=app_development
       - DB_HOST=DB
@@ -45,26 +44,27 @@ services:
       dockerfile: frontend/Dockerfile.development
     volumes:
       - ./frontend:/app
+      - node_modules:/app/node_modules
     ports:
       - "8080:8080"
     tty: true
     stdin_open: true
     environment:
       CHOKIDAR_USEPOLLING: true
-      # command: npm run serve
     depends_on:
       - backend
 
-  web:
-    build:
-      context: .
-      dockerfile: web/Dockerfile.development
-    ports:
-      - "80:80"
-    depends_on:
-      - frontend
-    # volumes_from:
-    #   - frontend
+  # web:
+  #   build:
+  #     context: .
+  #     dockerfile: web/Dockerfile.development
+  #   ports:
+  #     - "80:80"
+  #   depends_on:
+  #     - frontend
+  #   volumes_from:
+  #     - frontend
 
 volumes:
   mysql_data:
+  node_modules:

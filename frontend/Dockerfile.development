@@ -1,0 +1,8 @@
+# Stage 1: 開発ステージ
+FROM node:latest AS development-stage
+WORKDIR /app
+COPY /frontend .
+RUN npm install
+RUN npm install axios
+RUN npm install -g @vue/cli
+CMD ["npm", "run", "serve"]

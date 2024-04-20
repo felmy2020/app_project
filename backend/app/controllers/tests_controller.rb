@@ -5,7 +5,8 @@ class TestsController < ApplicationController
   def index
     @tests = Test.all
 
-    render json: @tests
+    # render json: @tests
+    render json: { message: @tests }
   end
 
   # GET /tests/1

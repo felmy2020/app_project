@@ -10,6 +10,10 @@ gem "mysql2", "~> 0.5"
 # WEBサーバー
 gem "puma", ">= 5.0"
 
+# Crossドメイン（API通信をするために必要）
+gem 'rack-cors'
+
+
 gem "tzinfo-data", platforms: %i[ mswin mswin64 mingw x64_mingw jruby ]
 gem "bootsnap", require: false
 

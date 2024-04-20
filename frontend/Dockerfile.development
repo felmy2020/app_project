@@ -1,8 +1,15 @@
 # Stage 1: 開発ステージ
 FROM node:latest AS development-stage
+
+# プロジェクトディレクトリの作業ディレクトリを設定
 WORKDIR /app
-COPY /frontend .
-RUN npm install
-RUN npm install axios
-RUN npm install -g @vue/cli
+
+# プロジェクトの依存関係のインストール
+COPY /frontend/package.json .
+RUN npm install @vue/cli
+
+# プロジェクトファイルのコピー
+COPY /frontend/ .
+
+# 開発用サーバーの起動
 CMD ["npm", "run", "serve"]

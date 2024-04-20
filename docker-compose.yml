@@ -51,7 +51,6 @@ services:
     stdin_open: true
     environment:
       CHOKIDAR_USEPOLLING: true
-      # command: npm run serve
     depends_on:
       - backend
 
@@ -63,8 +62,8 @@ services:
       - "80:80"
     depends_on:
       - frontend
-    # volumes_from:
-    #   - frontend
+    volumes_from:
+      - frontend
 
 volumes:
   mysql_data:

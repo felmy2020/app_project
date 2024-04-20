@@ -1,9 +1,9 @@
 #!/bin/sh
 
 # DBマイグレーション
-if [ $DO_MIGRATION = "true" ]; then
-  bundle exec rake db:migrate RAILS_ENV=$RAILS_ENV
-fi
+# if [ $DO_MIGRATION = "true" ]; then
+#   bundle exec rake db:migrate RAILS_ENV=$RAILS_ENV
+# fi
 
 # whenever設定
 # bundle exec whenever -i rails-app --update-crontab --set "path=/app/&environment=$RAILS_ENV"

@@ -19,6 +19,9 @@ Test.create(name: "Alice", age: 30)
 docker-compose exec backend /bin/bash
 docker-compose run --rm backend bash
 
+# CORS(Cross-Origin Resource Sharing)
+gem 'rack-cors'
+"backend:3001"
 
 # README
 ## エンジニアのため情報交換アプリ「SolQue」

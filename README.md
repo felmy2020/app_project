@@ -64,3 +64,4 @@ volumes:
 
 # ✅ プロジェクト作成の権限変更
  - sudo chown -R raizen:raizen ./*
+
